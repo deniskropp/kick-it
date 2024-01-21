@@ -1,9 +1,9 @@
-import { Ref, RefObject, useRef } from "react"
+import { Ref, RefObject } from 'react'
 
-import { getItemText } from "./getItemText"
-import { KickTemplate, Message } from "./types"
+import { getItemText } from './getItemText'
+import { KickTemplate, Message } from './types'
 
-function unref<T>(r: Ref<T>): T {
+function unref<T>(r: Ref<T>): T | null {
     const o: RefObject<T> = r as RefObject<T>
 
     return o?.current
@@ -24,7 +24,7 @@ export function useKickTemplate(init?: Partial<KickTemplate>): KickTemplate {
         context: init?.context ?? [],
         contents: init?.contents ?? [],
         make: init?.make ?? ((): Message[] => []),
-        makeSingle: init?.makeSingle ?? ((_prompt?: string): string => ''),
+        makeSingle: init?.makeSingle ?? ((/*prompt?: string*/): string => ''),
     }
 
     /**
@@ -35,7 +35,7 @@ export function useKickTemplate(init?: Partial<KickTemplate>): KickTemplate {
         let messages: Message[] = []
 
         const i2m = (i: KickTemplate): Message[] => ([
-            ...i.context.map((e: any) => ({
+            ...i.context.map((e: Item) => ({
                 role: `context:${e.tag ?? e.type}`,
                 content: typeof e === 'string' ? e : getItemText(e),
             })),
@@ -49,7 +49,7 @@ export function useKickTemplate(init?: Partial<KickTemplate>): KickTemplate {
             }))
         ])
 
-        for (let i = unref(instance.parent); i; i = unref(i.parent)) {
+        for (let i = instance.parent && unref(instance.parent); i; i = i.parent && unref(i.parent)) {
             messages = [...i2m(i), ...messages]
         }
 

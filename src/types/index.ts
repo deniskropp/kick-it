@@ -1,4 +1,4 @@
-import { Ref } from "react"
+import { Ref } from 'react'
 
 // TODO: replace this with ParsedContent
 export interface Item {
