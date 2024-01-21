@@ -17,6 +17,7 @@
     "@types/react": "^18.2.48",
     "cohere-ai": "^7.7.3",
     "react": "^18.2.0",
+    "tsx": "^4.7.0",
     "typescript": "^5.3.3"
   },
   "bugs": {
@@ -32,7 +33,8 @@
     "build": "tsc",
     "lint": "eslint -c .eslintrc.js src/**/*.ts",
     "lint:fix": "eslint -c .eslintrc.js --fix src/**/*.ts",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "start": "tsx examples/template-cohere.ts"
   },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^6.19.0",
