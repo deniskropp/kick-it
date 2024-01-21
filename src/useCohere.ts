@@ -2,6 +2,10 @@ import { CohereClient, Cohere } from 'cohere-ai'
 
 import type { KickTemplate } from './types'
 
+const config = {
+    useGenerate: process.env.COHERE_MODE === 'generate'
+}
+
 /**
  * Generates text using the Cohere API with the provided KickTemplate.
  *
@@ -14,7 +18,7 @@ export async function useCohere(templ: KickTemplate) {
         token: 'MDA9WUoe1dXsdhH3M9XkVo5wdxS3FXLwHfn8LhDg'
     })
 
-    if (env.COHERE_CHAT !== 'true') {
+    if (config.useGenerate) {
         // Generate a question using the provided KickTemplate
         const question = templ.makeSingle().slice(8)
 
