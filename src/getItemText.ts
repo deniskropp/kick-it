@@ -1,4 +1,4 @@
-import { Item } from "./types"
+import { Item } from './types'
 
 // TODO: replace this with ParsedContent
 export function getItemText(item: Item): string {

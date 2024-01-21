@@ -22,7 +22,7 @@
   "bugs": {
     "url": "https://github.com/deniskropp/kick-it/issues"
   },
-  "homepage": "https://github.com/deniskropp/kick-it#readme",
+  "homepage": "https://github.com/deniskropp/kick-it",
   "files": [
     "./bin/*",
     "./lib/*"
