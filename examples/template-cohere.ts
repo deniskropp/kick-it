@@ -15,6 +15,8 @@ async function run() {
 
     const result = await useCohere(templ)
 
+    console.log(result)
+
     return result
 }
 

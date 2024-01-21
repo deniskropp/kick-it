@@ -3,6 +3,9 @@ import { CohereClient, Cohere } from 'cohere-ai'
 import type { KickTemplate } from './types'
 
 const config = {
+    logMessages: false,
+    logRequest: false,
+    logResponse: false,
     useGenerate: process.env.COHERE_MODE === 'generate'
 }
 
@@ -22,7 +25,8 @@ export async function useCohere(templ: KickTemplate) {
         // Generate a question using the provided KickTemplate
         const question = templ.makeSingle().slice(8)
 
-        console.log('---\n', question)
+        if (config.logMessages)
+            console.log('---\n', question)
 
         // Create a request object with the necessary parameters for generating text
         const req = {
@@ -36,19 +40,22 @@ export async function useCohere(templ: KickTemplate) {
             prompt: question // provide the question as the prompt for text generation
         }
 
-        console.log('---\n', req)
+        if (config.logRequest)
+            console.log('---\n', req)
 
         // Generate text using the Cohere API with the request object
         const result = await cohere.generate(req)
 
-        console.log('---\n', result.generations[0].text)
+        if (config.logResponse)
+            console.log('---\n', result.generations[0].text)
 
         // Return the generated text
         return result.generations[0].text
     }
 
 
-    console.log('---\n', templ.makeSingle())
+    if (config.logMessages)
+        console.log('---\n', templ.makeSingle())
 
 
     const messages = templ.make()
@@ -68,12 +75,14 @@ export async function useCohere(templ: KickTemplate) {
         promptTruncation: Cohere.ChatRequestPromptTruncation.Auto,
     }
 
-    console.log('---\n', req)
+    if (config.logRequest)
+        console.log('---\n', req)
 
 
     const result = await cohere.chat(req)
 
-    console.log('---\n', result.text)
+    if (config.logResponse)
+        console.log('---\n', result.text)
 
     return result.text
 }
