@@ -22,7 +22,7 @@ export async function useCohere(templ: KickTemplate) {
         // Generate a question using the provided KickTemplate
         const question = templ.makeSingle().slice(8)
 
-        console.log(question)
+        console.log('---\n', question)
 
         // Create a request object with the necessary parameters for generating text
         const req = {
@@ -36,23 +36,29 @@ export async function useCohere(templ: KickTemplate) {
             prompt: question // provide the question as the prompt for text generation
         }
 
+        console.log('---\n', req)
+
         // Generate text using the Cohere API with the request object
         const result = await cohere.generate(req)
 
-        console.log(result.generations[0].text)
+        console.log('---\n', result.generations[0].text)
 
         // Return the generated text
         return result.generations[0].text
     }
 
+
+    console.log('---\n', templ.makeSingle())
+
+
     const messages = templ.make()
 
-    const l = messages[messages.length-1]
+    const l = messages[messages.length - 1]
 
     const req = {
         model: 'command-nightly',
         message: `⫻${l.role}\n${l.content}`,
-        chatHistory: messages.slice(1,messages.length-1).map(m => ({
+        chatHistory: messages.slice(1, messages.length - 1).map(m => ({
             role: Cohere.ChatMessageRole.User,
             message: `⫻${m.role}\n${m.content}`,
             //userName: m.role
@@ -62,14 +68,12 @@ export async function useCohere(templ: KickTemplate) {
         promptTruncation: Cohere.ChatRequestPromptTruncation.Auto,
     }
 
-    console.log(req)
+    console.log('---\n', req)
 
-    console.log(templ.makeSingle())
 
-    
     const result = await cohere.chat(req)
 
-    console.log(result.text)
+    console.log('---\n', result.text)
 
     return result.text
 }
