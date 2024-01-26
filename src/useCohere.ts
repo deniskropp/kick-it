@@ -15,10 +15,18 @@ const config = {
  * @param {KickTemplate} templ - The KickTemplate object used to generate the question.
  * @return {Promise<string>} The generated text.
  */
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const api_key = process.env.COHERE_API_KEY ?? ''
+
+console.log(`useCohere() with API key: ...${api_key.slice(10)}`)
+
 export async function useCohere(templ: KickTemplate) {
     // Create a new instance of Cohere with the provided API token
     const cohere = new CohereClient({
-        token: 'MDA9WUoe1dXsdhH3M9XkVo5wdxS3FXLwHfn8LhDg'
+        token: api_key
     })
 
     if (config.useGenerate) {
