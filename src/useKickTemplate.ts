@@ -1,13 +1,5 @@
-import { Ref, RefObject } from 'react'
-
 import { getItemText } from './getItemText'
 import { Item, KickTemplate, Message } from './types'
-
-function unref<T>(r: Ref<T>): T | null {
-    const o: RefObject<T> = r as RefObject<T>
-
-    return o?.current
-}
 
 /**
  * A template for document driven content.
@@ -49,7 +41,7 @@ export function useKickTemplate(init?: Partial<KickTemplate>): KickTemplate {
             }))
         ])
 
-        for (let i = instance.parent && unref(instance.parent); i; i = i.parent && unref(i.parent)) {
+        for (let i = instance.parent; i; i = i.parent) {
             messages = [...i2m(i), ...messages]
         }
 

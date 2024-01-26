@@ -1,5 +1,3 @@
-import { Ref } from 'react'
-
 // TODO: replace this with ParsedContent
 export interface Item {
     type: string
@@ -49,7 +47,7 @@ export interface KickTemplate {
     /**
      * The parent KickTemplate.
      */
-    parent?: Ref<KickTemplateParent>
+    parent?: KickTemplateParent
     /**
      * The constants used in the KickTemplate.
      */
