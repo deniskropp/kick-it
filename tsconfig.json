@@ -32,7 +32,6 @@
 		"pretty": true
 	},
 	"include": [
-		"typings/**/*",
 		"src/**/*"
 	]
 }
