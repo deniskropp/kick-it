@@ -2,7 +2,7 @@ import { CohereClient, Cohere } from 'cohere-ai'
 
 import type { KickTemplate } from './types'
 
-import dotenv from 'dotenv'
+import * as dotenv from 'dotenv'
 
 dotenv.config()
 
