@@ -4,7 +4,8 @@ import type { KickTemplate } from './types'
 
 import * as dotenv from 'dotenv'
 
-dotenv.config()
+if (process.cwd !== undefined)
+    dotenv.config()
 
 const api_key = process.env.COHERE_API_KEY ?? ''
 
