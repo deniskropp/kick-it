@@ -34,7 +34,7 @@
     "build": "tsc",
     "lint": "eslint -c .eslintrc.js src/**/*.ts",
     "lint:fix": "eslint -c .eslintrc.js --fix src/**/*.ts",
-    "prepublish": "npm run build",
+    "prepublish": "pnpm run build",
     "test": "tsx examples/template-cohere.ts"
   },
   "devDependencies": {
