@@ -2,6 +2,11 @@ import { CohereClient, Cohere } from 'cohere-ai'
 
 import type { KickTemplate } from './types'
 
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
+
 const api_key = process.env.COHERE_API_KEY ?? ''
 
 console.log(`useCohere() with API key: ...${api_key.slice(10)}`)
