@@ -1,5 +1,5 @@
 {
-  "name": "kick-it",
+  "name": "@blouce/kick-it",
   "version": "0.1.2",
   "description": "Keep It Concise and Kicking",
   "main": "./src/index.ts",
