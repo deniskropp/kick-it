@@ -39,7 +39,7 @@ export async function useCohere(templ: KickTemplate) {
 
         // Create a request object with the necessary parameters for generating text
         const req = {
-            model: 'command', // specify the model to use for text generation
+            model: 'command-r', // specify the model to use for text generation
             temperature: 0, // set the temperature to control the randomness of the generated text
             k: 0, // set the value for top-k sampling
             p: 0.75, // set the value for nucleus sampling
@@ -72,7 +72,7 @@ export async function useCohere(templ: KickTemplate) {
     const l = messages[messages.length - 1]
 
     const req = {
-        model: 'command-nightly',
+        model: 'command-r',
         message: `⫻${l.role}\n${l.content}`,
         chatHistory: messages.slice(1, messages.length - 1).map(m => ({
             role: Cohere.ChatMessageRole.User,
