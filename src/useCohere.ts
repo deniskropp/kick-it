@@ -12,9 +12,9 @@ const api_key = process.env.COHERE_API_KEY ?? ''
 console.log(`useCohere() with API key: ...${api_key.slice(10)}`)
 
 const config = {
-    logMessages: false,
-    logRequest: false,
-    logResponse: false,
+    logMessages: true,
+    logRequest: true,
+    logResponse: true,
     useGenerate: process.env.COHERE_MODE === 'generate'
 }
 
